@@ -14,8 +14,10 @@ class TaskManager:
         for i, tarefa in enumerate(tarefas):
             status = "[ ]" if tarefa.status == "Pendente" else "[X]"
             print(f"{i + 1} - {status} - {tarefa.descricao}")
+        print("\n")
 
     def criar_tarefa(self):
+        self.listar_tarefas()
         descricao = input("Qual a descricao da tarefa? \n")
         self.repository.criar_tarefa(descricao)
 

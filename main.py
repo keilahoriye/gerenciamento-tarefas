@@ -17,11 +17,10 @@ def main():
         manager.listar_tarefas()
         print("\n--- Opções ---")
         print("1. Adicionar Tarefa")
-        print("2. Listar Tarefas")
-        print("3. Mudar Status da Tarefa")
-        print("4. Mudar Descricao da Tarefa")
-        print("5. Excluir Tarefa")
-        print("6. Sair do programa")
+        print("2. Mudar Status da Tarefa")
+        print("3. Mudar Descricao da Tarefa")
+        print("4. Excluir Tarefa")
+        print("5. Sair do programa")
 
         choice = input("Selecione uma opção: ")
 
@@ -29,28 +28,26 @@ def main():
             system("cls") if name == "nt" else system("clear")
             manager.criar_tarefa()
             system("cls") if name == "nt" else system("clear")
-            print("Tarefa adicionada com sucesso!")
 
         elif choice == "2":
             system("cls") if name == "nt" else system("clear")
-            manager.listar_tarefas()
+            manager.mudar_status()
 
         elif choice == "3":
             system("cls") if name == "nt" else system("clear")
-            manager.mudar_status()
+            manager.editar_tarefa()
 
         elif choice == "4":
             system("cls") if name == "nt" else system("clear")
-            manager.editar_tarefa()
+            manager.excluir_tarefa()
 
         elif choice == "5":
             system("cls") if name == "nt" else system("clear")
-            manager.excluir_tarefa()
-
-        elif choice == "6":
-            system("cls") if name == "nt" else system("clear")
             print("Até mais!")
             break
+
+        else:
+            system("cls") if name == "nt" else system("clear")
 
 
 if __name__ == "__main__":
