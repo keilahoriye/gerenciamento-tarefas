@@ -14,11 +14,14 @@ def main():
     system("cls") if name == "nt" else system("clear")  # Limpa o console
 
     while True:
-        print("\n--- Lista de Tarefas ---")
+        manager.listar_tarefas()
+        print("\n--- Opções ---")
         print("1. Adicionar Tarefa")
         print("2. Listar Tarefas")
         print("3. Mudar Status da Tarefa")
-        print("4. Sair do programa")
+        print("4. Mudar Descricao da Tarefa")
+        print("5. Excluir Tarefa")
+        print("6. Sair do programa")
 
         choice = input("Selecione uma opção: ")
 
@@ -37,6 +40,14 @@ def main():
             manager.mudar_status()
 
         elif choice == "4":
+            system("cls") if name == "nt" else system("clear")
+            manager.editar_tarefa()
+
+        elif choice == "5":
+            system("cls") if name == "nt" else system("clear")
+            manager.excluir_tarefa()
+
+        elif choice == "6":
             system("cls") if name == "nt" else system("clear")
             print("Até mais!")
             break

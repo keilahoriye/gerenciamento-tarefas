@@ -1,5 +1,6 @@
 from repository import TaskRepository
 from models import Tarefa
+from os import system, name
 
 
 class TaskManager:
@@ -9,6 +10,7 @@ class TaskManager:
     def listar_tarefas(self):
         tarefas = self.repository.get_tarefas()  # Atualiza a lista de tarefas
 
+        print("\n--- Lista de Tarefas ---")
         for i, tarefa in enumerate(tarefas):
             status = "[ ]" if tarefa.status == "Pendente" else "[X]"
             print(f"{i + 1} - {status} - {tarefa.descricao}")
@@ -35,6 +37,7 @@ class TaskManager:
         id_tarefa = tarefas[idx_tarefa - 1].id
 
         self.repository.atualizar_tarefa(id_tarefa, nova_desc)
+        system("cls") if name == "nt" else system("clear")  # Limpa o console
 
     def mudar_status(self):
         self.listar_tarefas()
@@ -54,11 +57,13 @@ class TaskManager:
             idx_tarefa = int(input("Digite um numero de tarefa valido!"))
 
         tarefa_status = (
-            "Pendente" if tarefas[idx_tarefa].status == "Concluído" else "Concluído"
+            "Pendente" if tarefas[idx_tarefa - 1].status == "Concluído" else "Concluído"
         )
         id_tarefa = tarefas[idx_tarefa - 1].id
+        print(id_tarefa)
 
         self.repository.atualizar_status(id_tarefa, tarefa_status)
+        system("cls") if name == "nt" else system("clear")  # Limpa o console
 
     def excluir_tarefa(self):
         self.listar_tarefas()
@@ -86,6 +91,8 @@ class TaskManager:
         if confirmacao == "s":
             id_tarefa = tarefas[idx_tarefa - 1].id
             self.repository.excluir_tarefa(id_tarefa)
+            system("cls") if name == "nt" else system("clear")  # Limpa o console
 
         else:
+            system("cls") if name == "nt" else system("clear")  # Limpa o console
             self.excluir_tarefa()
