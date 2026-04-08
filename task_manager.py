@@ -1,20 +1,21 @@
-import sql
+from repository import TaskRepository
+from tarefa import Tarefa
 
 
-class ListaTarefas:
-    def __init__(self):
-        self.tarefas = sql.get_tarefas()
+class TaskManager:
+    def __init__(self, repository: TaskRepository):
+        self.repository = repository
 
     def listar_tarefas(self):
-        self.tarefas = sql.get_tarefas()  # Atualiza a lista de tarefas
+        tarefas = self.repository.get_tarefas()  # Atualiza a lista de tarefas
 
-        for i, tarefa in enumerate(self.tarefas):
+        for i, tarefa in enumerate(tarefas):
             status = "[ ]" if tarefa.status == "Pendente" else "[X]"
             print(f"{i + 1} - {status} - {tarefa.descricao}")
 
     def criar_tarefa(self):
         descricao = input("Qual a descricao da tarefa? \n")
-        sql.criar_tarefa(descricao)
+        self.repository.criar_tarefa(descricao)
 
     def editar_tarefa(self):
         self.listar_tarefas()
@@ -26,13 +27,14 @@ class ListaTarefas:
             return
 
         # Verifica se o numero da tarefa a editar eh valido
-        while idx_tarefa - 1 not in range(len(self.tarefas)):
+        tarefas = self.repository.get_tarefas()
+        while idx_tarefa - 1 not in range(len(tarefas)):
             idx_tarefa = int(input("Digite um numero de tarefa valido!"))
 
         nova_desc = input("Digite a nova descricao da tarefa: \n")
-        id_tarefa = self.tarefas[idx_tarefa - 1].id
+        id_tarefa = tarefas[idx_tarefa - 1].id
 
-        sql.atualizar_tarefa(id_tarefa, nova_desc)
+        self.repository.atualizar_tarefa(id_tarefa, nova_desc)
 
     def mudar_status(self):
         self.listar_tarefas()
@@ -47,17 +49,16 @@ class ListaTarefas:
             return
 
         # Verifica se o numero da tarefa a editar eh valido
-        while idx_tarefa - 1 not in range(len(self.tarefas)):
+        tarefas = self.repository.get_tarefas()
+        while idx_tarefa - 1 not in range(len(tarefas)):
             idx_tarefa = int(input("Digite um numero de tarefa valido!"))
 
         tarefa_status = (
-            "Pendente"
-            if self.tarefas[idx_tarefa].status == "Concluído"
-            else "Concluído"
+            "Pendente" if tarefas[idx_tarefa].status == "Concluído" else "Concluído"
         )
-        id_tarefa = self.tarefas[idx_tarefa - 1].id
+        id_tarefa = tarefas[idx_tarefa - 1].id
 
-        sql.atualizar_status(id_tarefa, tarefa_status)
+        self.repository.atualizar_status(id_tarefa, tarefa_status)
 
     def excluir_tarefa(self):
         self.listar_tarefas()
@@ -72,7 +73,8 @@ class ListaTarefas:
             return
 
         # Verifica se o numero da tarefa a editar eh valido
-        while idx_tarefa - 1 not in range(len(self.tarefas)):
+        tarefas = self.repository.get_tarefas()
+        while idx_tarefa - 1 not in range(len(tarefas)):
             idx_tarefa = int(input("Digite um numero de tarefa valido!"))
 
         confirmacao = ""
@@ -82,8 +84,8 @@ class ListaTarefas:
             )
 
         if confirmacao == "s":
-            id_tarefa = self.tarefas[idx_tarefa - 1].id
-            sql.excluir_tarefa(id_tarefa)
+            id_tarefa = tarefas[idx_tarefa - 1].id
+            self.repository.excluir_tarefa(id_tarefa)
 
         else:
             self.excluir_tarefa()
