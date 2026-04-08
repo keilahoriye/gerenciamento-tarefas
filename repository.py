@@ -1,6 +1,6 @@
 from sqlalchemy import Engine, select
 from sqlalchemy.orm import Session
-from tarefa import Tarefa
+from models import Tarefa
 
 
 class TaskRepository:

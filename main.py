@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from tarefa import Base
+from models import Base
 from repository import TaskRepository
 from task_manager import TaskManager
 from os import system, name

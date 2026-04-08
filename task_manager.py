@@ -1,5 +1,5 @@
 from repository import TaskRepository
-from tarefa import Tarefa
+from models import Tarefa
 
 
 class TaskManager:
