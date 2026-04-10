@@ -1,7 +1,7 @@
 from sqlalchemy import Engine, select
 from sqlalchemy.orm import Session
 from models import Tarefa
-
+from models import Task
 
 class TaskRepository:
     def __init__(self, engine: Engine):
