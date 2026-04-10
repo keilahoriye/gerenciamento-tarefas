@@ -1,7 +1,6 @@
 from sqlalchemy import Engine, select
 from sqlalchemy.orm import Session
 from models import Tarefa
-from models import Task
 
 class TaskRepository:
     def __init__(self, engine: Engine):
@@ -21,7 +20,7 @@ class TaskRepository:
             print(f"Erro {e} ao criar tarefa")
             return e
 
-    def get_tarefas(self) -> list[Task]:
+    def get_tarefas(self) -> list[Tarefa]:
         try:
             session = Session(self.engine)
             tarefas = session.scalars(select(Tarefa)).all()

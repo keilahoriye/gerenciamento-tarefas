@@ -14,4 +14,4 @@ class Tarefa(Base):
     status: Mapped[str] = mapped_column(String(15))
 
     def __repr__(self):
-        return f"<Task(id={self.id}, description='{self.description}', status='{self.status}')>"
+        return f"<Task(id={self.id}, description='{self.descricao}', status='{self.status}')>"
