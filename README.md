@@ -34,12 +34,10 @@ Cada tarefa possui uma Issue dedicada com:
 * Vínculo direto com o projeto Kanban.
 
 ## DevOps e Automação (GitHub Actions)
-Foi configurado um workflow no GitHub Actions para garantir a integração contínua (CI).
+Foi configurado um workflow no GitHub Actions para garantir a integração contínua (CI) ao testar funcionalidades do código.
 
 ## Equipe
 * [Gabriela Vitoria Vieira]
 * [Guilherme Nascimento Braga]
 * [Keila Kaori Horiye]
 * [Luanna Garla]
-
-## Instruções de Execução
